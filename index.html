@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
   <link rel="stylesheet" href="stylesheets/github-dark.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.16.4/lodash.min.js"></script>
+  
   <script type="text/javascript" src="javascripts/script.js"></script>
 
   <title>Xmas</title>
@@ -50,15 +52,18 @@
           </div>
           <div>
             <label for="sn"> Number of Scenes  </label>
-            <input id="sn" name="sn" type="text" value="" />
+            <select id="sn" name="sn" value=1>
+            </select>
           </div>
           <div>
             <label for="in"> Number of Items </label>
-            <input id="in" name="in" type="text" value="" />
+            <select id="in" name="in" value=1>
+            </select>
           </div>
           <div>
             <label for="ln"> Number of Lines </label>
-            <input id="ln" name="ln" type="text" value="" />
+            <select id="ln" name="ln" value=1>
+            </select>
           </div>
           <input type="submit" value="Send" />
         </form>
