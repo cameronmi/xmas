@@ -50,7 +50,7 @@ $(document).ready(function(){
      request = $.ajax({
          url: "https://script.google.com/macros/s/AKfycbxjJ73uGfOjfeJqi08U75gW7-mB3TMF5Wu5iezg-cNZiH_z_H4/exec",
          type: "post",
-         data: JSON.stringify(formdata);
+         data: JSON.stringify(formdata)
      });
 
      // Callback handler that will be called on success
