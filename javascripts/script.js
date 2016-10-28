@@ -33,7 +33,7 @@
         var num = $select.val();
         var options = _.slice(_.shuffle(data[i]), 0, num);
         formdata[columns[i]] = _.join(options, ", ");
-        $("#" + columns[i]).html('<ul><li>' + _.join(options, "</li><li>") + '</li></ul>');
+        $("#" + columns[i]).html('<li>' + _.join(options, "</li><li>") + '</li>');
         results.push("(" + _.join(options) + ")");
         return num;
       });
