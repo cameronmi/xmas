@@ -1,52 +1,97 @@
 (function($) {
 $(document).ready(function(){
+   
+   // Variable to hold request
+   var request;
 
-  // putting lines by the pre blocks
-  $("pre").each(function(){
-    var pre = $(this).text().split("\n");
-    var lines = new Array(pre.length+1);
-    for(var i = 0; i < pre.length; i++) {
-      var wrap = Math.floor(pre[i].split("").length / 70)
-      if (pre[i]==""&&i==pre.length-1) {
-        lines.splice(i, 1);
-      } else {
-        lines[i] = i+1;
-        for(var j = 0; j < wrap; j++) {
-          lines[i] += "\n";
-        }
-      }
-    }
-    $(this).before("<pre class='lines'>" + lines.join("\n") + "</pre>");
-  });
+   // Bind to the submit event of our form
+   $("#form").submit(function(event){
 
-  var headings = [];
+     // Prevent default posting of form - put here to work in case of errors
+     event.preventDefault();
 
-  var collectHeaders = function(){
-    headings.push({"top":$(this).offset().top - 15,"text":$(this).text()});
+     //Abort any pending request
+     if (request) {
+       request.abort();
+     }
+     //setup some local variables
+     var $form = $(this);
+
+     // Let's select and cache all the fields
+     var $inputs = $form.find("input, select, button, textarea");
+
+     // Serialize the data in the form
+     var serializedData = $form.serialize();
+
+     // Let's disable the inputs for the duration of the Ajax request.
+     // Note: we disable elements AFTER the form data has been serialized.
+     // Disabled form elements will not be serialized.
+     $inputs.prop("disabled", true);
+
+     // Fire off the request to /form.php
+     request = $.ajax({
+         url: "https://script.google.com/macros/s/AKfycbxjJ73uGfOjfeJqi08U75gW7-mB3TMF5Wu5iezg-cNZiH_z_H4/exec",
+         type: "post",
+         data: serializedData
+     });
+
+     // Callback handler that will be called on success
+     request.done(function (response, textStatus, jqXHR){
+         // Log a message to the console
+         console.log("Hooray, it worked!");
+     });
+
+     // Callback handler that will be called on failure
+     request.fail(function (jqXHR, textStatus, errorThrown){
+         // Log the error to the console
+         console.error(
+             "The following error occurred: "+
+             textStatus, errorThrown
+         );
+     });
+
+     // Callback handler that will be called regardless
+     // if the request failed or succeeded
+     request.always(function () {
+         // Reenable the inputs
+         $inputs.prop("disabled", false);
+     });
+   });
+   
+  function pickFromArray(ary) {
+    return ary[Math.floor(Math.random()*ary.length)];
+  }
+      
+  function generate() {
+    var text1 = pickFromArray(first);
+    var text2 = pickFromArray(second);
+    var text3 = pickFromArray(third);
+    document.getElementById('slot1').textContent=text1;
+    document.getElementById('slot2').textContent=text2;
+    document.getElementById('slot3').textContent=text3;
+    var e = document.createElement('li')
+    e.textContent = text1 + ' + ' + text2 + ' + ' + text3;
+    var log = document.getElementById('log').firstElementChild;
+    log.insertBefore(e, log.firstChild);
+    ga('send', 'event', 'Button', 'Click', 'generate');
   }
 
-  if($(".markdown-body h1").length > 1) $(".markdown-body h1").each(collectHeaders)
-  else if($(".markdown-body h2").length > 1) $(".markdown-body h2").each(collectHeaders)
-  else if($(".markdown-body h3").length > 1) $(".markdown-body h3").each(collectHeaders)
-
-  $(window).scroll(function(){
-    if(headings.length==0) return true;
-    var scrolltop = $(window).scrollTop() || 0;
-    if(headings[0] && scrolltop < headings[0].top) {
-      $(".current-section").css({"opacity":0,"visibility":"hidden"});
-      return false;
-    }
-    $(".current-section").css({"opacity":1,"visibility":"visible"});
-    for(var i in headings) {
-      if(scrolltop >= headings[i].top) {
-        $(".current-section .name").text(headings[i].text);
+  function initApplication() {
+    var xhr = new XMLHttpRequest();
+    xhr.open( "GET", 'data.json', true );
+    xhr.responseType = 'json';
+    xhr.send();
+    xhr.onreadystatechange = function () {
+      if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var data = xhr.response;
+        first = data[0];
+        second = data[1];
+        third = data[2];
+//        document.getElementById('generate-button').removeAttribute('disabled');
       }
-    }
-  });
+    };
+  }
+  initApplication();
 
-  $(".current-section a").click(function(){
-    $(window).scrollTop(0);
-    return false;
-  })
 });
 })(jQuery)
