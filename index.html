@@ -47,30 +47,43 @@
         
         <form id="form">
           <div>
-            <label for="id"> ID </label>
+            <label for="id"> PTT ID </label>
             <input id="id" name="id" type="text" value="" />
           </div>
           <div>
-            <label for="sn"> Number of Scenes  </label>
+            <label for="sn"> 場景數量  </label>
             <select id="sn" name="sn" value=1>
             </select>
           </div>
           <div>
-            <label for="in"> Number of Items </label>
+            <label for="fn"> 食物數量 </label>
+            <select id="fn" name="fn" value=1>
+            </select>
+          </div>
+          <div>
+            <label for="in"> 物品數量 </label>
             <select id="in" name="in" value=1>
             </select>
           </div>
           <div>
-            <label for="ln"> Number of Lines </label>
+            <label for="gn"> 姿勢動作數量 </label>
+            <select id="gn" name="gn" value=1>
+            </select>
+          </div>
+          <div>
+            <label for="ln"> 台詞 </label>
             <select id="ln" name="ln" value=1>
             </select>
           </div>
           <input type="submit" value="Send" />
         </form>
-        <div>
-          result:
+
+        <div id='result'>
+          抽籤結果：
           <div>場景<ul id='scene'></ul></div>
+          <div>食物<ul id='food'></ul></div>
           <div>物品<ul id='item'></ul></div>
+          <div>姿勢動作<ul id='gesture'></ul></div>
           <div>台詞<ul id='line'></ul></div>
         </div>
       </div>
