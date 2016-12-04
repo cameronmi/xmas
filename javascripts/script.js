@@ -4,8 +4,8 @@
     // Variable to hold request
     var request;
     var data;
-    var ids = ['sn', 'in', 'ln'];
-    var columns = ['scene', 'item', 'line'];
+    var ids = ['sn', 'fn', 'in', 'gn', 'ln'];
+    var columns = ['scene', 'food', 'item', 'gesture', 'line'];
     // Bind to the submit event of our form
     $("#form").submit(function(event) {
 
@@ -75,25 +75,7 @@
         $inputs.prop("disabled", false);
       });
     });
-
-    function pickFromArray(ary) {
-      return ary[Math.floor(Math.random() * ary.length)];
-    }
-
-    function generate() {
-      var text1 = pickFromArray(first);
-      var text2 = pickFromArray(second);
-      var text3 = pickFromArray(third);
-      document.getElementById('slot1').textContent = text1;
-      document.getElementById('slot2').textContent = text2;
-      document.getElementById('slot3').textContent = text3;
-      var e = document.createElement('li')
-      e.textContent = text1 + ' + ' + text2 + ' + ' + text3;
-      var log = document.getElementById('log').firstElementChild;
-      log.insertBefore(e, log.firstChild);
-      ga('send', 'event', 'Button', 'Click', 'submit');
-    }
-
+ 
     function initApplication() {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", 'data.json', true);
@@ -102,14 +84,6 @@
       xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
           data = xhr.response;
-          _.each(ids, function(v, i) {
-            var $select = $("#" + v);
-            _.each(data[i], function(v, i) {
-              $select.append($('<option value=' + (i + 1) + '>' + (i + 1) + '</option>'));
-            });
-          });
-
-
         }
       };
     }
