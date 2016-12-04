@@ -8,6 +8,7 @@
     var columns = ['scene', 'food', 'item', 'gesture', 'line'];
     // Bind to the submit event of our form
     $("#form").submit(function(event) {
+      $("#form").addClass("hidden");
 
       // Prevent default posting of form - put here to work in case of errors
       event.preventDefault();
@@ -32,7 +33,7 @@
         var $select = $("#" + id);
         var num = $select.val();
         var options = _.slice(_.shuffle(data[i]), 0, num);
-        formdata[columns[i]] = _.join(options, ", ");
+        formdata[columns[i]] = _.join(options, "\n");
         $("#" + columns[i]).html('<li>' + _.join(options, "</li><li>") + '</li>');
         results.push("(" + _.join(options) + ")");
         return num;
@@ -57,6 +58,7 @@
       request.done(function(response, textStatus, jqXHR) {
         // Log a message to the console
         console.log("Hooray, it worked!");
+        $("#result").removeClass("hidden");
       });
 
       // Callback handler that will be called on failure
@@ -75,7 +77,10 @@
         $inputs.prop("disabled", false);
       });
     });
- 
+    function reset() {
+      $("#form").removeClass("hidden");
+      $("#result").addClass("hidden");
+    }
     function initApplication() {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", 'data.json', true);
