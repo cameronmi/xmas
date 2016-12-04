@@ -1,5 +1,17 @@
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 
+#form label {
+    width: 100px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ============================================================================= */
+
 /**
  * 1. Set default font family to sans-serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
@@ -967,6 +979,4 @@ footer .owner p a {
 
 
 
-#form label {
-  width: 95px;
-}
+
