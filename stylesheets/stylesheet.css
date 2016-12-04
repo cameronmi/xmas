@@ -1008,3 +1008,8 @@ footer .owner {
   border: 5px solid #422;
   color: #800;
 }
+
+h1.title {
+  font-size: 40px;
+  font-style: normal;
+}
