@@ -58,8 +58,6 @@
       request.done(function(response, textStatus, jqXHR) {
         // Log a message to the console
         console.log("Hooray, it worked!");
-        $(".progress").addClass("hidden");
-        $("#result").removeClass("hidden");
       });
 
       // Callback handler that will be called on failure
@@ -76,6 +74,8 @@
       request.always(function() {
         // Reenable the inputs
         $inputs.prop("disabled", false);
+        $(".progress").addClass("hidden");
+        $("#result").removeClass("hidden");
       });
     });
     function initApplication() {
