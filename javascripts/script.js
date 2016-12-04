@@ -9,7 +9,7 @@
     // Bind to the submit event of our form
     $("#form").submit(function(event) {
       $("#form").addClass("hidden");
-
+      $(".progress").removeClass("hidden");
       // Prevent default posting of form - put here to work in case of errors
       event.preventDefault();
       ga('send', 'event', 'Button', 'Click', 'generate');
@@ -58,6 +58,7 @@
       request.done(function(response, textStatus, jqXHR) {
         // Log a message to the console
         console.log("Hooray, it worked!");
+        $(".progress").addClass("hidden");
         $("#result").removeClass("hidden");
       });
 
