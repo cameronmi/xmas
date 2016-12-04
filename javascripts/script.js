@@ -77,10 +77,6 @@
         $inputs.prop("disabled", false);
       });
     });
-    function reset() {
-      $("#form").removeClass("hidden");
-      $("#result").addClass("hidden");
-    }
     function initApplication() {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", 'data.json', true);
@@ -91,6 +87,11 @@
           data = xhr.response;
         }
       };
+
+      window.reset = function() {
+        $("#form").removeClass("hidden");
+        $("#result").addClass("hidden");
+      }
     }
     initApplication();
 
