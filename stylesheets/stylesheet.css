@@ -980,26 +980,26 @@ ul {
 }
 
 #container {
-  border: 1px solid #422;
-  background: #822;
+  border: 1px solid #622;
+  background: #a33;
 }
 .download-bar {
-  background: #800;
-  color: #800;
-  border: 5px solid #422;
+  background: #a11;
+  color: #a11;
+  border: 5px solid #622;
 }
 .download-bar .blc {
-  border: 10px solid #422;
-  border-color: transparent transparent #422;
+  border: 10px solid #622;
+  border-color: transparent transparent #622;
 }
 .download-bar .trc {
-  border: 10px solid #422;
-  border-color: #422 transparent transparent;
+  border: 10px solid #622;
+  border-color: #622 transparent transparent;
 }
 footer .owner {
-  background: #800;
-  border: 5px solid #422;
-  color: #800;
+  background: #a11;
+  border: 5px solid #622;
+  color: #a11;
 }
 
 h1.title {
