@@ -970,13 +970,6 @@ footer .owner p a {
 
 /* ============================================================================= */
 
-
-#form label {
-  width: 100px;
-  display: inline-block;
-  margin: 5px;
-}
-
 .hidden {
   display: none;
 }
