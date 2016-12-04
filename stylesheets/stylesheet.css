@@ -1008,9 +1008,11 @@ h1.title {
 }
 
 #main-content {
-  min-height: 350px;
+  min-height: 300px;
 }
-
+.progress {
+  margin-top: 140px;
+}
 #start {
   margin-top: 25px;
 }
