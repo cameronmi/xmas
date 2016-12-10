@@ -7,7 +7,7 @@
     var ids = ['sn', 'fn', 'in', 'gn', 'ln'];
     var columns = ['scene', 'food', 'item', 'gesture', 'line'];
 
-    $("#id").onchange(function(event) {
+    $("#id").change(function(event) {
       $("#start").attr('disabled', !event.target.value)
     });
     
