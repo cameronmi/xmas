@@ -6,7 +6,12 @@
     var data;
     var ids = ['sn', 'fn', 'in', 'gn', 'ln'];
     var columns = ['scene', 'food', 'item', 'gesture', 'line'];
-    // Bind to the submit event of our form
+
+    $("#id").onchange(function(event) {
+      $("#start").attr('disabled', !event.target.value)
+    });
+    
+    // Bind to the submit event of our form    
     $("#form").submit(function(event) {
       $("#form").addClass("hidden");
       $(".progress").removeClass("hidden");
